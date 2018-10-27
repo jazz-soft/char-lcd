@@ -1,0 +1,22 @@
+{
+  "name": "char-lcd",
+  "version": "0.0.0",
+  "description": "character-lcd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-uglify": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jazz-soft/char-lcd.git"
+  },
+  "bugs": "https://github.com/jazz-soft/char-lcd/issues",
+  "homepage": "https://github.com/jazz-soft/char-lcd#readme",
+  "license": "MIT"
+}
