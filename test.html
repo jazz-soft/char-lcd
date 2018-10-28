@@ -13,7 +13,8 @@
 <div id=here></div>
 
 <script><!--
-var lcd = new CharLCD('here');
+var lcd = new CharLCD({ at: 'here', rows: 8, cols: 32 });
+for (var r = 0; r < 8; r++) for (var c = 0; c < 32; c++) lcd.put(r, c, String.fromCharCode(r * 32 + c));
 --></script>
 
 </body>
