@@ -12,7 +12,8 @@
 ////////////////////////////
 
 var CW = 5; // charachter width
-var CH = 8; // character heights
+var CH = 8; // character height
+var CL = 10; // large character height
 
 function CharLCD(obj) {
   var _ = {
@@ -224,7 +225,7 @@ function CharLCD(obj) {
     cols: 16,
     pix: 3,
     brk: 1,
-    off: '#dd2',
+    off: '#cd2',
     on: '#143'
   };
   if (obj) for (var key in obj) {
@@ -235,7 +236,9 @@ function CharLCD(obj) {
   }
   create(_);
   this.set = function(r, c, data) { set(_, r, c, data); };
-  this.put = function(r, c, ch) { put(_, r, c, ch); };
+  this.char = function(r, c, ch) { char(_, r, c, ch); };
+  this.text = function(r, c, str) { text(_, r, c, str); };
+  this.font = function(n, data) { font(_, n, data); };
 }
 
 function create(_) {
@@ -256,12 +259,13 @@ function create(_) {
 function createAt(_) {
   var r, c, rr, cc, x, y, xx, yy, pix;
   var cell = _.arg.pix + _.arg.brk;
+  var HH = _.arg.large ? CL : CH;
 
   var lcd = document.createElement('div');
   lcd.style.position = 'relative';
   lcd.style.display = 'inline-block';
   lcd.style.width = cell * ((1 + CW) * _.arg.cols + 1) + _.arg.brk + 'px';
-  lcd.style.height = cell * ((1 + CH) * _.arg.rows + 1) + _.arg.brk + 'px';
+  lcd.style.height = cell * ((1 + HH) * _.arg.rows + 1) + _.arg.brk + 'px';
   lcd.style.backgroundColor = _.arg.off;
   _.pix = [];
   _.txt = [];
@@ -271,7 +275,7 @@ function createAt(_) {
       for (rr = 0; rr < CH; rr++) {
         for (cc = 0; cc < CW; cc++) {
           x = cell * ((1 + CW) * c + 1 + cc) + _.arg.brk;
-          y = cell * ((1 + CH) * r + 1 + rr) + _.arg.brk;
+          y = cell * ((1 + HH) * r + 1 + rr) + _.arg.brk;
           pix = document.createElement('div');
           pix.style.position = 'absolute';
           pix.style.display = 'inline-block';
@@ -302,8 +306,20 @@ function set(_, r, c, data) {
   }
 }
 
-function put(_, r, c, ch) {
+function char(_, r, c, ch) {
   set(_, r, c, _.font[ch.charCodeAt(0)]);
+}
+
+function text(_, r, c, str) {
+  if (r != parseInt(r) || r < 0 || r >= _.arg.rows || c != parseInt(c) || c < 0 || c >= _.arg.cols) return;
+  for (var i = 0; i < str.length; i++) {
+    if (i + c >= _.arg.cols) break;
+    char(_, r, i + c, str[i]);
+  }
+}
+
+function font(_, n, data) {
+  _.font[n] = data;
 }
 
 ////////////////////////////

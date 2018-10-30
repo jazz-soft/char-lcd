@@ -10,11 +10,11 @@
 <body>
 <h1>char-lcd test</h1>
 
-<div id=here></div>
+<div id=lcd8x32></div>
 
 <script><!--
-var lcd = new CharLCD({ at: 'here', rows: 8, cols: 32 });
-for (var r = 0; r < 8; r++) for (var c = 0; c < 32; c++) lcd.put(r, c, String.fromCharCode(r * 32 + c));
+var lcd8x32 = new CharLCD({ at: 'lcd8x32', rows: 8, cols: 32, large: true });
+for (var r = 0; r < 8; r++) for (var c = 0; c < 32; c++) lcd8x32.char(r, c, String.fromCharCode(r * 32 + c));
 --></script>
 
 </body>
