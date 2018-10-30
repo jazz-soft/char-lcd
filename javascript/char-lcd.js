@@ -16,7 +16,6 @@ var CH = 8; // character heights
 
 function CharLCD(obj) {
   var _ = {
-    pix: [], txt: [],
     font: [
       [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
       [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [],
@@ -228,9 +227,11 @@ function CharLCD(obj) {
     off: '#dd2',
     on: '#143'
   };
-  if (obj) {
-    if (obj.rows == parseInt(obj.rows) && obj.rows > 0) _.arg.rows = parseInt(obj.rows);
-    if (obj.cols == parseInt(obj.cols) && obj.cols > 0) _.arg.cols = parseInt(obj.cols);
+  if (obj) for (var key in obj) {
+    if (typeof _.arg[key] != 'undefined' && _.arg[key] == parseInt(_.arg[key])) { // numeric
+      if (obj[key] == parseInt(obj[key]) && obj[key] > 0) _.arg[key] = parseInt(obj[key]);
+    }
+    else _.arg[key] = obj[key];
   }
   create(_);
   this.set = function(r, c, data) { set(_, r, c, data); };
@@ -238,6 +239,14 @@ function CharLCD(obj) {
 }
 
 function create(_) {
+  if (typeof _.arg.at == 'string') _.arg.at = document.getElementById(_.arg.at);
+  if (_.arg.at) {
+    try {
+      createAt(_);
+      return;
+    }
+    catch(e) {}
+  }
   var bottom = document.createElement('div');
   document.body.appendChild(bottom);
   _.arg.at = bottom;
@@ -253,6 +262,9 @@ function createAt(_) {
   lcd.style.display = 'inline-block';
   lcd.style.width = cell * ((1 + CW) * _.arg.cols + 1) + _.arg.brk + 'px';
   lcd.style.height = cell * ((1 + CH) * _.arg.rows + 1) + _.arg.brk + 'px';
+  lcd.style.backgroundColor = _.arg.off;
+  _.pix = [];
+  _.txt = [];
 
   for (r = 0; r < _.arg.rows; r++) {
     for (c = 0; c < _.arg.cols; c++) {
