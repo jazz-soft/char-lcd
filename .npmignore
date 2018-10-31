@@ -1,0 +1,6 @@
+minified
+polymer
+.*
+bower.json
+Gruntfile.js
+*.html

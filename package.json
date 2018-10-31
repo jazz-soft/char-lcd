@@ -2,11 +2,11 @@
   "name": "char-lcd",
   "version": "0.0.0",
   "description": "character-lcd",
-  "main": "index.js",
+  "main": "javascript/char-lcd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "jazz-soft (https://jazz-soft.net/)",
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-jshint": "^2.0.0",
