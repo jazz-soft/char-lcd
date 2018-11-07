@@ -3,16 +3,34 @@ import 'char-lcd';
 
 export class CharLcd extends PolymerElement {
 
-  constructor() { super(); }
-
   static get template() { return html``; }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.lcd = new window.CharLCD({ at: this.shadowRoot });
+  static get properties() {
+    return {
+      rows: {
+        type: Number,
+        value: 2,
+//        notify: true
+      },
+      cols: {
+        type: Number,
+        value: 16,
+//        notify: true
+      }
+    }
   }
 
-  ready() { super.ready(); }
+  ready() {
+    super.ready();
+    this.lcd = new window.CharLCD({
+      at: this.shadowRoot,
+      rows: this.rows,
+      cols: this.cols
+    });
+  }
+
+  text(r, c, str) { this.lcd.text(r, c, str); }
+  font(n, data) { this.lcd.font(n, data); }
 
 }
 
