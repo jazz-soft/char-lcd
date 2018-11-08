@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jazz-soft/char-lcd.git"
+    "url": "https://github.com/jazz-soft/char-lcd.git"
   },
   "author": "",
   "license": "MIT",
