@@ -6,6 +6,7 @@
     define('CharLCD', [], factory);
   }
   else {
+    if (!global) global = window;
     global.CharLCD = factory();
   }
 })(this, function() {
