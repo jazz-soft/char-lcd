@@ -311,11 +311,54 @@ function char(_, r, c, ch) {
   set(_, r, c, _.font[ch.charCodeAt(0)]);
 }
 
+var _map = {
+  0x30a0: 0x00,
+  0x30a1: 0xa7,
+  0x30a2: 0xb1,
+  0x30a3: 0xa8,
+  0x30a4: 0xb2,
+  0x30a5: 0xa9,
+  0x30a6: 0xb3,
+  0x30a7: 0xaa,
+  0x30a8: 0xb4,
+  0x30a9: 0xab,
+  0x30aa: 0xb5,
+  0x30ab: 0xb6,
+  0x30ac: [0xb6, 0xde],
+  0x30ad: 0xb7,
+  0x30ae: [0xb7, 0xde],
+  0x30af: 0xb8,
+  0x30b0: [0xb8, 0xde],
+
+  0x30bf: 0xc0,
+
+  0x30ca: 0xc5
+};
+
 function text(_, r, c, str) {
   if (r != parseInt(r) || r < 0 || r >= _.arg.rows || c != parseInt(c) || c < 0 || c >= _.arg.cols) return;
-  for (var i = 0; i < str.length; i++) {
-    if (i + c >= _.arg.cols) break;
-    char(_, r, i + c, str[i]);
+  var i, k, x;
+  for (i = 0; i < str.length; i++) {
+    if (str[i] == '\n') {
+      c = 0;
+      r++;
+      if (r >= _.arg.rows) return;
+    }
+    else {
+      if (c >= _.arg.cols) continue;
+      x = str.charCodeAt(i);
+      if (_map[x]) x = _map[x];
+      if (x instanceof Array) {
+        for (j = 0; j < x.length; j++) {
+          char(_, r, c, String.fromCharCode(x[j]));
+          c++;
+        }
+      }
+      else {
+        char(_, r, c, String.fromCharCode(x));
+        c++;
+      }
+    }
   }
 }
 
