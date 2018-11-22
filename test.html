@@ -10,11 +10,36 @@
 <body>
 <h1>char-lcd test</h1>
 
-<div id=lcd8x32></div>
+<div>
+<span id=lcd1></span>
+<span id=lcd0></span>
+<span id=lcd2></span>
+</div>
+<div>
+<span id=lcdjp></span>
+<span id=lcdv></span>
+<span id=lcdeu></span>
+</div>
 
 <script><!--
-var lcd8x32 = new CharLCD({ at: 'lcd8x32', rows: 8, cols: 32, large: true });
-for (var r = 0; r < 8; r++) for (var c = 0; c < 32; c++) lcd8x32.char(r, c, String.fromCharCode(r * 32 + c));
+var i, j;
+var lcd0 = new CharLCD({ at: 'lcd0', rows: 1, cols: 1, off: '#fff', on: '#f00' });
+var lcd1 = new CharLCD({ at: 'lcd1', rows: 1, cols: 16, off: '#fff', on: '#000' });
+var lcd2 = new CharLCD({ at: 'lcd2', rows: 1, cols: 16, off: '#fff', on: '#000' });
+var lcdv = new CharLCD({ at: 'lcdv', rows: 16, cols: 1, off: '#fff', on: '#000' });
+var lcdjp = new CharLCD({ at: 'lcdjp', rows: 16, cols: 16 });
+var lcdeu = new CharLCD({ at: 'lcdeu', rows: 16, cols: 16, rom: 'eu', off: '#008', on: '#fe8' });
+lcd0.font(0, [0, 10, 21, 17, 10, 4]);
+lcd0.char(0, 0, String.fromCharCode(0));
+for (i = 0; i < 16; i++) {
+  lcd1.char(0, i, "0123456789ABCDEF"[i]);
+  lcd2.char(0, i, "0123456789ABCDEF"[i]);
+  lcdv.char(i, 0, "0123456789ABCDEF"[i]);
+  for (j = 0; j < 16; j++) {
+    lcdjp.char(i, j, String.fromCharCode(i * 16 + j));
+    lcdeu.char(i, j, String.fromCharCode(i * 16 + j));
+  }
+}
 --></script>
 
 </body>
