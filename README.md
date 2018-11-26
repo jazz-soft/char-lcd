@@ -1,4 +1,4 @@
-# char-lcd
+﻿# char-lcd
 
 [![npm](https://img.shields.io/npm/v/char-lcd.svg)](https://www.npmjs.com/package/char-lcd)
 
@@ -49,5 +49,5 @@ https://github.com/jazz-soft/polymer-char-lcd
     <div id=lcd></lcd>
     ...
     var lcd = new CharLCD({ at: 'lcd', rows: 2, cols: 16, rom: 'eu' });
-    // this will correctly map the characters from UNICODE:
+    // Map UNICODE string to the internal character set:
     lcd.text(0, 0, "ЁЛКИ-ПАЛКИ!");
