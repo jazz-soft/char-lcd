@@ -46,7 +46,7 @@ https://github.com/jazz-soft/polymer-char-lcd
     });
 
 ## Example
-    <div id=lcd></lcd>
+    <div id=lcd></div>
     ...
     var lcd = new CharLCD({ at: 'lcd', rows: 2, cols: 16, rom: 'eu' });
     // Map UNICODE string to the internal character set:

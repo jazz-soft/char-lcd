@@ -1,0 +1,22 @@
+{
+  "name": "char-lcd",
+  "description": "character-lcd",
+  "main": "javascript/char-lcd.js",
+  "authors": [
+    "jazz-soft (https://jazz-soft.net/)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "character-lcd",
+    "lcd",
+    "HD44780U"
+  ],
+  "homepage": "https://github.com/jazz-soft/char-lcd",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
