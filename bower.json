@@ -1,6 +1,6 @@
 {
   "name": "char-lcd",
-  "description": "character-lcd",
+  "description": "Character LCD display emulator",
   "main": "javascript/char-lcd.js",
   "authors": [
     "jazz-soft (https://jazz-soft.net/)"
@@ -9,7 +9,7 @@
   "keywords": [
     "character-lcd",
     "lcd",
-    "HD44780U"
+    "HD44780"
   ],
   "homepage": "https://github.com/jazz-soft/char-lcd",
   "ignore": [
