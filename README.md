@@ -26,31 +26,48 @@ https://github.com/jazz-soft/polymer-char-lcd
 
 ##### Plain HTML
 
-    <script src="char-lcd.js"></script>
-    //...
+```html
+<script src="char-lcd.js"></script>
+//...
+```
 
-##### CDN (always the latest version!)
+##### CDN (jsdelivr)
 
-    <script src="https://cdn.jsdelivr.net/npm/char-lcd"></script>
-    //...
+```html
+<script src="https://cdn.jsdelivr.net/npm/char-lcd"></script>
+//...
+```
+
+##### CDN (unpkg)
+
+```html
+<script src="https://unpkg.com/char-lcd"></script>
+//...
+```
 
 ##### CommonJS
 
-    var CharLCD = require('char-lcd');
-    //...
+```js
+var CharLCD = require('char-lcd');
+//...
+```
 
 ##### AMD
 
-    require(['char-lcd'], function(CharLCD) {
-      // ...
-    });
+```js
+require(['char-lcd'], function(CharLCD) {
+  // ...
+});
+```
 
 ## Example
-    <div id=lcd></div>
-    ...
-    var lcd = new CharLCD({ at: 'lcd', rows: 2, cols: 16, rom: 'eu' });
-    // Map UNICODE string to the internal character set:
-    lcd.text(0, 0, "ЁЛКИ-ПАЛКИ!");
+```html
+<div id=lcd></div>
+...
+var lcd = new CharLCD({ at: 'lcd', rows: 2, cols: 16, rom: 'eu' });
+// Map UNICODE string to the internal character set:
+lcd.text(0, 0, "ЁЛКИ-ПАЛКИ!");
+```
 
 ## API
 ##### constructor
