@@ -1,9 +1,10 @@
 {
   "name": "char-lcd",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Character LCD display emulator",
   "main": "javascript/char-lcd.js",
   "scripts": {
+    "lint": "eslint javascript",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -13,6 +14,7 @@
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
   "devDependencies": {
+    "eslint": "^7.6.0",
     "grunt": "^1.2.1",
     "grunt-contrib-jshint": "^2.1.0",
     "grunt-contrib-uglify": "^5.0.0"

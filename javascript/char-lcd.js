@@ -62,7 +62,7 @@ function create(_) {
 }
 
 function createAt(_) {
-  var r, c, rr, cc, x, y, xx, yy, pix;
+  var r, c, rr, cc, x, y, pix;
   var cell = _.arg.pix + _.arg.brk;
   var HH = _.arg.large ? CL : CH;
 
