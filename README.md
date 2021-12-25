@@ -14,7 +14,6 @@ Emulate **Hitachi HD44780** and compatible devices in HTML
 ## Install
 
 `npm install char-lcd --save`  
-or `bower install char-lcd`  
 or `yarn add char-lcd`  
 or clone the whole project from [**GitHub**](https://github.com/jazz-soft/char-lcd)
 

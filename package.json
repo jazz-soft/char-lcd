@@ -14,7 +14,7 @@
   ],
   "author": "jazz-soft (https://jazz-soft.net/)",
   "devDependencies": {
-    "eslint": "^8.0.1",
+    "eslint": "^8.5.0",
     "grunt": "^1.4.1",
     "grunt-contrib-jshint": "^3.1.1",
     "grunt-contrib-uglify": "^5.0.1"
