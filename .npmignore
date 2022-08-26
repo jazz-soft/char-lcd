@@ -1,5 +1,4 @@
-minified
 .*
-bower.json
+minified
 Gruntfile.js
 *.html
