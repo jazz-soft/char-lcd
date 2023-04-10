@@ -1,6 +1,7 @@
 (function(global, factory) {
   if (typeof exports === 'object' && typeof module !== 'undefined') {
     module.exports = factory();
+    module.exports.CharLCD = module.exports;
   }
   else if (typeof define === 'function' && define.amd) {
     define('CharLCD', [], factory);

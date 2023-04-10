@@ -51,6 +51,13 @@ var CharLCD = require('char-lcd');
 //...
 ```
 
+##### TypeScript / ES6
+
+```js
+import { CharLCD } from 'char-lcd';
+//...
+```
+
 ##### AMD
 
 ```js
