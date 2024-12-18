@@ -45,6 +45,7 @@ function CharLCD(obj) {
   this.char = function(r, c, ch) { char(_, r, c, ch); };
   this.text = function(r, c, str) { text(_, r, c, str); };
   this.font = function(n, data) { font(_, n, data); };
+  this.clear = function() { clear(_) }
 }
 
 function create(_) {
@@ -152,6 +153,14 @@ function text(_, r, c, str) {
 
 function font(_, n, data) {
   _.font[n] = data;
+}
+
+function clear(_) {
+  for (var r = 0; r < _.arg.rows; r++) {
+    for (var c = 0; c < _.arg.cols; c++) {
+      set(_, r, c, []); // Set all pixels to off (clear the character)
+    }
+  }
 }
 
 ////////////////////////////
