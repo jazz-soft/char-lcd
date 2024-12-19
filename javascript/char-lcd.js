@@ -45,7 +45,7 @@ function CharLCD(obj) {
   this.char = function(r, c, ch) { char(_, r, c, ch); };
   this.text = function(r, c, str) { text(_, r, c, str); };
   this.font = function(n, data) { font(_, n, data); };
-  this.clear = function() { clear(_) }
+  this.clear = function() { clear(_); };
 }
 
 function create(_) {
@@ -55,7 +55,7 @@ function create(_) {
       createAt(_);
       return;
     }
-    catch(e) {}
+    catch(e) {/**/}
   }
   var bottom = document.createElement('div');
   document.body.appendChild(bottom);
