@@ -13,9 +13,9 @@
 })(this, function() {
 ////////////////////////////
 
-var CW = 5; // charachter width
-var CH = 8; // character height
-var CL = 10; // large character height
+var CW = 5;
+var CH = 8;
+var CL = 10;
 
 function CharLCD(obj) {
   var _ = {
@@ -27,13 +27,15 @@ function CharLCD(obj) {
       pix: 3,
       brk: 1,
       off: '#cd2',
-      on: '#143'
-    }
+      on: '#143',
+      transitionDuration: '100ms'
+    },
+    previousState: [],
   };
 
   if (obj) {
     for (var key in obj) {
-      if (typeof _.arg[key] != 'undefined' && _.arg[key] == parseInt(_.arg[key])) { // numeric
+      if (typeof _.arg[key] != 'undefined' && _.arg[key] == parseInt(_.arg[key])) {
         if (obj[key] == parseInt(obj[key]) && obj[key] > 0) _.arg[key] = parseInt(obj[key]);
       }
       else _.arg[key] = obj[key];
@@ -41,11 +43,12 @@ function CharLCD(obj) {
     if (obj.rom && obj.rom.toString().toLowerCase() == 'eu') _.rom = _eu;
   }
   create(_);
+  
   this.set = function(r, c, data) { set(_, r, c, data); };
   this.char = function(r, c, ch) { char(_, r, c, ch); };
   this.text = function(r, c, str) { text(_, r, c, str); };
   this.font = function(n, data) { font(_, n, data); };
-  this.clear = function() { clear(_) }
+  this.clear = function() { clear(_) };
 }
 
 function create(_) {
@@ -91,6 +94,7 @@ function createAt(_) {
           pix.style.width = _.arg.pix + 'px';
           pix.style.height = _.arg.pix + 'px';
           pix.style.backgroundColor = _.arg.off;
+          pix.style.transition = `background-color ${_.arg.transitionDuration} ease-in-out`;
           _.pix.push(pix);
           lcd.appendChild(pix);
         }
@@ -158,7 +162,7 @@ function font(_, n, data) {
 function clear(_) {
   for (var r = 0; r < _.arg.rows; r++) {
     for (var c = 0; c < _.arg.cols; c++) {
-      set(_, r, c, []); // Set all pixels to off (clear the character)
+      set(_, r, c, []);
     }
   }
 }
