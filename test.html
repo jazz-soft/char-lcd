@@ -1,46 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>char-lcd test</title>
-<script src="javascript/char-lcd.js"></script>
-<script><!--
---></script>
-</head>
-
+  <head>
+    <title>char-lcd test</title>
+    <script src="javascript/char-lcd.js"></script>
+  </head>
 <body>
-<h1>char-lcd test</h1>
+  <h1>char-lcd test</h1>
 
-<div>
-<span id=lcd1></span>
-<span id=lcd0></span>
-<span id=lcd2></span>
-</div>
-<div>
-<span id=lcdjp></span>
-<span id=lcdv></span>
-<span id=lcdeu></span>
-</div>
+  <div>
+    <span id=lcd1></span>
+    <span id=lcd0></span>
+    <span id=lcd2></span>
+  </div>
+  <div>
+    <span id=lcdjp></span>
+    <span id=lcdv></span>
+    <span id=lcdeu></span>
+  </div>
 
-<script><!--
-var i, j;
-var lcd0 = new CharLCD({ at: 'lcd0', rows: 1, cols: 1, off: '#fff', on: '#f00' });
-var lcd1 = new CharLCD({ at: 'lcd1', rows: 1, cols: 16, off: '#fff', on: '#000' });
-var lcd2 = new CharLCD({ at: 'lcd2', rows: 1, cols: 16, off: '#fff', on: '#000' });
-var lcdv = new CharLCD({ at: 'lcdv', rows: 16, cols: 1, off: '#fff', on: '#000' });
-var lcdjp = new CharLCD({ at: 'lcdjp', rows: 16, cols: 16 });
-var lcdeu = new CharLCD({ at: 'lcdeu', rows: 16, cols: 16, rom: 'eu', off: '#008', on: '#fe8' });
-lcd0.font(0, [0, 10, 21, 17, 10, 4]);
-lcd0.char(0, 0, String.fromCharCode(0));
-for (i = 0; i < 16; i++) {
-  lcd1.char(0, i, "0123456789ABCDEF"[i]);
-  lcd2.char(0, i, "0123456789ABCDEF"[i]);
-  lcdv.char(i, 0, "0123456789ABCDEF"[i]);
-  for (j = 0; j < 16; j++) {
-    lcdjp.char(i, j, String.fromCharCode(i * 16 + j));
-    lcdeu.char(i, j, String.fromCharCode(i * 16 + j));
-  }
-}
---></script>
+  <h1>Example code in README.md</h1>
+  <div id="lcd"></div>
 
+  <h1>LCD Without Blur Effect</h1>
+  <span id="unblur_lcd"></span>
+
+  <h1>LCD With Blur Effect</h1>
+  <span id="blur_lcd"></span>
+
+  <script>
+    var i, j;
+    var lcd0 = new CharLCD({ at: 'lcd0', rows: 1, cols: 1, off: '#fff', on: '#f00' });
+    var lcd1 = new CharLCD({ at: 'lcd1', rows: 1, cols: 16, off: '#fff', on: '#000' });
+    var lcd2 = new CharLCD({ at: 'lcd2', rows: 1, cols: 16, off: '#fff', on: '#000' });
+    var lcdv = new CharLCD({ at: 'lcdv', rows: 16, cols: 1, off: '#fff', on: '#000' });
+    var lcdjp = new CharLCD({ at: 'lcdjp', rows: 16, cols: 16 });
+    var lcdeu = new CharLCD({ at: 'lcdeu', rows: 16, cols: 16, rom: 'eu', off: '#008', on: '#fe8' });
+    lcd0.font(0, [0, 10, 21, 17, 10, 4]);
+    lcd0.char(0, 0, String.fromCharCode(0));
+    for (i = 0; i < 16; i++) {
+      lcd1.char(0, i, "0123456789ABCDEF"[i]);
+      lcd2.char(0, i, "0123456789ABCDEF"[i]);
+      lcdv.char(i, 0, "0123456789ABCDEF"[i]);
+      for (j = 0; j < 16; j++) {
+        lcdjp.char(i, j, String.fromCharCode(i * 16 + j));
+        lcdeu.char(i, j, String.fromCharCode(i * 16 + j));
+      }
+    }
+
+    // code test for example code in README.md
+    var lcd = new CharLCD({ at: 'lcd', rows: 4, cols: 16, rom: 'eu' } );
+
+    // Example 1: Display a single custom character at row 0, column 0
+    // To set a custom character, use String.fromCharCode to map a character byte (16-255).
+    // In this case, use character code 16, which is the first non-blank character in the set.
+    lcd.char(0, 0, String.fromCharCode(50));  // Set the custom character at row 0, column 0
+
+    // Example 2: Display another custom character at row 1, column 0
+    lcd.char(1, 0, String.fromCharCode(75));  // Set another custom character at row 1, column 0
+
+    // Example 3: Display a string with mapped Unicode characters
+    // The lcd.text() function will automatically map Unicode characters to the internal character set.
+    lcd.text(2, 0, "Hello LCD!");
+    lcd.text(3, 0, "ЁЛКИ-ПАЛКИ!");
+
+    // blur test
+    var lcd3 = new CharLCD({ at: 'unblur_lcd', rows: 3, cols: 16, rom: 'eu', transitionDuration: "0ms" } );
+    var lcd4 = new CharLCD({ at: 'blur_lcd', rows: 3, cols: 16, rom: 'eu' } );
+
+    function updateLCDText() {
+      // Step-by-step text updates with a 2-second interval between each update
+      setTimeout(function() {
+        lcd3.clear();
+        lcd4.clear();
+    
+        lcd3.text(0, 0, 'Hello, World!');
+        lcd4.text(0, 0, 'Hello, World!');
+    
+        setTimeout(function() {
+          lcd3.clear();
+          lcd4.clear();
+    
+          lcd3.text(0, 0, 'char-lcd ');
+          lcd4.text(0, 0, 'char-lcd ');
+    
+          setTimeout(function() {
+            lcd3.clear();
+            lcd4.clear();
+    
+            lcd3.text(0, 0, 'Testing...');
+            lcd4.text(0, 0, 'Testing...');
+    
+            // Repeat the cycle by calling the update function again
+            updateLCDText();
+          }, 1000);  // Wait for 2 seconds before showing next text
+    
+        }, 1000);  // Wait for 2 seconds before showing the next row of text
+    
+      }, 1000);  // Wait for 2 seconds before showing the first row of text
+    }
+    
+    // Start the text update loop
+    updateLCDText();
+
+  </script>
 </body>
 </html>
